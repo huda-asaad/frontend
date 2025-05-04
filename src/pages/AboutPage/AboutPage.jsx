@@ -1,6 +1,7 @@
 import "./AboutPage.css";
 import { FaHeadset, FaTools, FaCheckCircle } from "react-icons/fa";
 
+import img1 from "../../assets/images/z.jpeg";
 import img2 from "../../assets/images/M.jpeg";
 import img3 from "../../assets/images/x.jpeg";
 import img4 from "../../assets/images/v.jpeg";
@@ -11,15 +12,19 @@ export default function AboutPage() {
     <div className="about-page">
       {/* Header */}
       <section className="about-header">
-        <h1>About us</h1>
-        <p>Discover Aqar’s vision in delivering top real estate services.</p>
+        <div className="about-header-content">
+          <h1>About us</h1>
+          <p>Discover Aqar’s vision in delivering top real estate services.</p>
+        </div>
+
         <div className="about-images-row">
-          
           <img src={img2} alt="Team 2" />
           <img src={img3} alt="Team 3" />
           <img src={img4} alt="Team 4" />
+          <img src={img1} alt="Team 1" />
         </div>
       </section>
+
 
       {/* Split Content */}
       <section className="about-split">

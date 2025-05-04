@@ -82,3 +82,19 @@
     color: #3a543d;
   }
   
+
+  .nav-links button {
+    background: none;
+    border: none;
+    color: #acbea9;
+    font-weight: 500;
+    font-size: 1rem; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0;
+  }
+  
+  .nav-links button:hover {
+    color: #3a543d;
+  }
