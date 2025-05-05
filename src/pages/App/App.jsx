@@ -1,6 +1,6 @@
 import "./App.css";
-import { Route, Routes } from 'react-router-dom';
-import { useState } from "react";  
+import { Route, Routes, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
@@ -12,13 +12,25 @@ import PropertyIndexPage from "../PropertyIndexPage/PropertyIndexPage";
 import PropertyFormPage from "../PropertyFormPage/PropertyFormPage";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
+
 // APIs
-import * as usersAPI from "../../utilities/users-api";
+import { getUser } from "../../utilities/users-api"; 
 
-export default function App() {
-  const [user, setUser] = useState(null);  
+function App() {
+  const [user, setUser] = useState(null);
+  const location = useLocation();
+  const routes = [ "home","about","properties"]
+  const mainCSS = routes.filter(r => location.pathname.includes(r) ? r : "").join(" ")
 
-  console.log(user, "check user in app.jsx")
+  useEffect(() => {
+    async function checkUser() {
+      const loggedInUser = await getUser();
+      setUser(loggedInUser)
+    }
+    checkUser()
+  }, [])
+
+
 
   return (
     <>
@@ -29,8 +41,8 @@ export default function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/property/:id" element={<PropertyDetailPage />} />
           <Route path="/properties" element={<PropertyIndexPage />} />
-          <Route path="/properties/villas" element={<PropertyIndexPage filter="villa" />} />
-          <Route path="/properties/apartments" element={<PropertyIndexPage filter="apartment" />} />
+          <Route path="/properties/:filter" element={<PropertyIndexPage />} />
+          <Route path="/properties/" element={<PropertyIndexPage />} />
           <Route path="/properties/:id" element={<PropertyDetailPage />} />
           <Route path="/properties/new" element={<PropertyFormPage createProperty={true} />} />
           <Route path="/properties/edit/:id" element={<PropertyFormPage editProperty={true} />} />
@@ -44,3 +56,4 @@ export default function App() {
     </>
   );
 }
+export default App

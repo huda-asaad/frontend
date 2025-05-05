@@ -10,9 +10,10 @@ export default function PropertyIndexCard({ property }) {
                 <p>{property.price} SR - {property.size} sqm</p>
                 <p>{property.rooms} rooms • {property.bathrooms} bathrooms</p>
                 <p><small>{property.description}</small></p>
-                <Link to={`/properties/${property.id}`} className="view-details-btn">
+                <Link to={`/property/${property.id}`} className="view-details-btn">
                     View Details
                 </Link>
+
             </div>
         </div>
     );

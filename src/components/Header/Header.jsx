@@ -16,7 +16,7 @@ export default function Header({ user, setUser }) {
     e.preventDefault();
     usersAPI.logout();
     setUser(null);
-    navigate("/");
+    navigate("/login");
   }
 
   return (
@@ -27,35 +27,35 @@ export default function Header({ user, setUser }) {
         </Link>
       </div>
 
-      <nav className="nav-links">
-        <div className="dropdown">
-          <span className="dropdown-toggle" onClick={toggleDropdown}>
-            Properties ▾
-          </span>
-          {showDropdown && (
-            <div className="dropdown-menu">
-              <Link to="/properties?type=villa" onClick={() => setShowDropdown(false)}>Villas</Link>
-              <Link to="/properties?type=apartment" onClick={() => setShowDropdown(false)}>Apartments</Link>
-            </div>
-          )}
+    <nav className="nav-links">
+  {user && (
+    <div className="dropdown">
+      <span className="dropdown-toggle" onClick={toggleDropdown}>
+        Properties ▾
+      </span>
+      {showDropdown && (
+        <div className="dropdown-menu">
+          <Link to="/properties/villa" onClick={() => setShowDropdown(false)}>Villas</Link>
+          <Link to="/properties/apartment" onClick={() => setShowDropdown(false)}>Apartments</Link>
         </div>
+      )}
+    </div>
+  )}
 
-        <Link to="/about">About</Link>
+  <Link to="/about">About</Link>
 
-        {user ? (
-          <>
-           
-            <form onSubmit={handleLogout} style={{ display: "inline" }}>
-              <button type="submit">Logout</button>
-            </form>
-          </>
-        ) : (
-          <>
-            <Link to="/signup">Sign Up</Link>
-            <Link to="/login">Login</Link>
-          </>
-        )}
-      </nav>
+  {user ? (
+    <form onSubmit={handleLogout} style={{ display: "inline" }}>
+      <button type="submit">Logout</button>
+    </form>
+  ) : (
+    <>
+      <Link to="/signup">Sign Up</Link>
+      <Link to="/login">Login</Link>
+    </>
+  )}
+</nav>
+
     </header>
   );
 }

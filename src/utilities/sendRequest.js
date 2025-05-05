@@ -1,5 +1,6 @@
 export default async function sendRequest(url, method = 'GET', payload) {
 	const token = localStorage.getItem('token');
+
 	const options = { method };
   
 	if (payload) {

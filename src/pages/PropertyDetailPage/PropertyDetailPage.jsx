@@ -16,9 +16,12 @@ export default function PropertyDetailPage() {
     async function fetchData() {
       try {
         const propertyData = await propertyAPI.show(id);
+        console.log(propertyData)
+        
         setProperty(propertyData);
-
+          
         const amenitiesData = await propertyAmenities(id);
+
         setAmenities(amenitiesData);
       } catch (err) {
         console.error("Failed to fetch property or amenities", err);
@@ -34,7 +37,6 @@ export default function PropertyDetailPage() {
   return (
     <section className="detail-property-wrapper">
 
-      {/* أزرار التنقل */}
       <div className="center-action-bar">
         <a href="/properties" className="action-btn back">← Back</a>
         <Link to="/properties/new" className="action-btn add">Add</Link>
@@ -42,9 +44,8 @@ export default function PropertyDetailPage() {
         <Link to={`/properties/confirm_delete/${property.id}`} className="action-btn danger">Delete</Link>
       </div>
 
-      {/* التفاصيل والمرافق جنب بعض */}
       <div className="detail-property-container">
-        {/* القسم الأفقي: كارد العقار + كارد المرافق */}
+
         <div className="horizontal-section">
           <div className="detail-property-card">
             <img
@@ -78,7 +79,7 @@ export default function PropertyDetailPage() {
               <div className="amenities-list">
                 {amenities.map((a, idx) => (
                   <div key={idx} className="amenity-card">
-                    <span className="amenity-name">✅ {a.name}</span>
+                    <span className="amenity-name"> {a.name}</span>
                   </div>
                 ))}
               </div>
@@ -88,7 +89,6 @@ export default function PropertyDetailPage() {
           </div>
         </div>
 
-        {/* نموذج الاستفسار تحتهم */}
         <div className="inquiry-section">
           <InquiryForm propertyId={property.id} />
         </div>
