@@ -22,17 +22,15 @@ It provides an intuitive user interface for browsing properties, viewing details
 ---
 
 ## 🚀 Deployed Site
-[🌍 Live Site](#)
+[🌍 (http://localhost:5173/)](#)
 
 ---
 
-## 🧑‍💻 Features Implemented
-- User login/signup with JWT
-- View all villas and apartments
-- Detailed property pages
-- Inquiry submission form
-- Public Home and About pages
-- Protected routes for logged-in users only
+## 👩🏻‍💻 Features Implemented
+- Advanced search and filtering for properties
+- User profile and saved properties
+- Ratings and reviews for properties
+- Multi-language support
 
 ---
 

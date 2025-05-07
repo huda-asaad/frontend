@@ -28,7 +28,6 @@ export default function PropertyFormPage({ createProperty, editProperty, deleteP
     function handleChange(evt) {
         setFormData({ ...formData, [evt.target.name]: evt.target.value });
     }
-
     async function handleSubmit(evt) {
         evt.preventDefault();
         try {
@@ -37,11 +36,12 @@ export default function PropertyFormPage({ createProperty, editProperty, deleteP
                 ? await propertyAPI.update(formData, currProperty.id)
                 : await propertyAPI.create(formData);
             setFormData(initialState);
-            navigate(`/properties/${newProperty.id}`);
+            navigate(`/properties/${newProperty.type}`); 
         } catch (err) {
             console.log(err);
         }
     }
+    
 
     async function handleDelete(evt) {
         evt.preventDefault();

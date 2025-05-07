@@ -6,29 +6,24 @@ import PropertyIndexCard from "../../components/PropertyIndexCard/PropertyIndexC
 
 export default function PropertyIndexPage() {
   const [allProperties, setAllProperties] = useState([]);
-  const { filter } = useParams();
-
-  
+  const { filter } = useParams(); 
   useEffect(() => {
     async function fetchProperties() {
-     
       try {
-       const data = await propertyAPI.index();
-        setAllProperties(data);
-       
+        const data = await propertyAPI.index();
+
+        const filteredData = filter
+          ? data.filter((property) => property.type === filter)
+          : data;
+
+        setAllProperties(filteredData);
       } catch (err) {
         console.error("Error fetching properties", err);
       }
     }
-    
+
     fetchProperties();
-  }, []);
-
-  // const filteredProperties = allProperties.filter((property) =>
-  //   !typeFilter ? true : property.type === typeFilter
-  // );
-
-  
+  }, [filter]); 
 
   return (
     <section className="index-card-container">
